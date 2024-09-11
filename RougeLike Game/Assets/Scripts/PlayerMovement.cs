@@ -144,7 +144,9 @@ public class PlayerMovement : MonoBehaviour
             if (flatVelocity.magnitude > moveSpeed)
             {
                 Vector3 limitVelocity = flatVelocity.normalized * moveSpeed;
+                                        //gets only direction * the speed we want
                 rb.velocity = new Vector3(limitVelocity.x, 0f, limitVelocity.z);
+                //apply this velocity to actual velocity
             }
         }
     }
