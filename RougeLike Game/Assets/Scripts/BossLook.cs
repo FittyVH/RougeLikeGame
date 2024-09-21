@@ -9,7 +9,7 @@ public class BossLook : MonoBehaviour
 
     void Start()
     {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0f, transform.eulerAngles.z);
+        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0f, transform.eulerAngles.z);
     }
 
     void Update()
