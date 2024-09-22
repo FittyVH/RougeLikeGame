@@ -6,10 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     public int hp = 3;
 
-    void Start()
-    {
-
-    }
+    public GameObject[] heartUi;
 
     void Update()
     {
@@ -21,9 +18,9 @@ public class HealthSystem : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "obstacle")
+        if (other.gameObject.tag == "obstacle" && hp >=0)
         {
-            Debug.Log(hp);
+            heartUi[hp].SetActive(false);
             hp--;
         }
     }
