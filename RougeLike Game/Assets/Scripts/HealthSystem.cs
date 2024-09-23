@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
@@ -10,9 +11,9 @@ public class HealthSystem : MonoBehaviour
 
     void Update()
     {
-        if (hp <= 0)
+        if (hp < 0)
         {
-            Debug.Log("maa chuda le");
+            Time.timeScale = 0f;
         }
     }
 

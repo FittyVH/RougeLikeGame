@@ -43,14 +43,6 @@ public class SpwanObstacle : MonoBehaviour
         obstacleSpawned = true;
         moveDirection = new Vector3(transform.position.x - player.transform.position.x, 0f, transform.position.z - player.transform.position.z);
     }
-    
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "boundry")
-        {
-            Destroy(spawnedObstacle);
-        }
-    }
 
     IEnumerator DelayedTranslate(GameObject obj, float delay)
     {
