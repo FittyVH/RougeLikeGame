@@ -6,9 +6,11 @@ public class DamageBoss : MonoBehaviour
 {
     int hp = 5;
 
+    public GameObject[] heartUiBoss;
+
     void Update()
     {
-        if (hp < 0)
+        if (hp <= 0)
         {
             Debug.Log("maa chod di");
             Time.timeScale = 0f;
@@ -17,10 +19,10 @@ public class DamageBoss : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "sword")
+        if (other.tag == "sword" && hp >= 0)
         {
-            Debug.Log("ouch");
             hp--;
+            heartUiBoss[hp].SetActive(false);
         }
     }
 }
