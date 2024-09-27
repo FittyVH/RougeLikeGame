@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-    bool canAttack = true;
     public float attackCooldown = 1f;
     public float attackDuration = 0.5f; 
+
+    bool canAttack = true;
 
     BoxCollider boxCollider;
     MeshRenderer meshRenderer;

@@ -8,7 +8,11 @@ public class DamageBoss : MonoBehaviour
 
     void Update()
     {
-
+        if (hp < 0)
+        {
+            Debug.Log("maa chod di");
+            Time.timeScale = 0f;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -16,6 +20,7 @@ public class DamageBoss : MonoBehaviour
         if (other.tag == "sword")
         {
             Debug.Log("ouch");
+            hp--;
         }
     }
 }
