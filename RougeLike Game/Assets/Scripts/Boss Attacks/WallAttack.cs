@@ -1,25 +1,25 @@
 using System.Collections;
 using UnityEngine;
 
-public class BulletAttack : MonoBehaviour
+public class WallAttack : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject bullet;
     public GameObject player;
     public EnableRandomAttack enableRandomAttack;
 
-    public BulletAttack bulletAttack;
+    public WallAttack wallAttack;
 
     GameObject spawnedBullet;
     Vector3 moveDirection;
 
     public float moveSpeed;
     public float spawnInterval = 5f;
-    public float launchDelay = 2f;  // Fixed typo "lauchDelay" to "launchDelay"
+    public float launchDelay = 2f;
     public int maxIterations = 5;
 
+    private bool bulletSpawned = false;
     private bool isSpawning = false;
-    bool bulletSpawned;
 
     void OnEnable()
     {
@@ -32,7 +32,7 @@ public class BulletAttack : MonoBehaviour
 
     void Update()
     {
-        // Moved bullet movement logic to a separate method
+        // Move the bullet if it has been spawned
         if (spawnedBullet != null && bulletSpawned)
         {
             MoveBullet();
@@ -48,8 +48,12 @@ public class BulletAttack : MonoBehaviour
     {
         // Spawn the bullet and calculate the direction to the player
         spawnedBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
-        moveDirection = (player.transform.position - spawnPoint.position).normalized;
-        bulletSpawned = true;
+        moveDirection = new Vector3(
+            spawnPoint.transform.position.x - player.transform.position.x, 
+            0f, 
+            spawnPoint.transform.position.z - player.transform.position.z
+        ).normalized;
+
         maxIterations--;
         StartCoroutine(DelayedTranslate(spawnedBullet, launchDelay));  // Only call once per bullet
     }
@@ -57,8 +61,7 @@ public class BulletAttack : MonoBehaviour
     IEnumerator DelayedTranslate(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);  // Wait before moving the bullet
-        // Set the bullet to move in the next Update cycle
-        bulletSpawned = true;
+        bulletSpawned = true;  // Set the bullet to move after the delay
     }
 
     IEnumerator SpawnInterval()
@@ -76,18 +79,18 @@ public class BulletAttack : MonoBehaviour
         // Move the spawned bullet in the calculated direction
         if (spawnedBullet != null)
         {
-            spawnedBullet.transform.position += moveDirection * moveSpeed * Time.deltaTime;
+            spawnedBullet.transform.position += -moveDirection * moveSpeed * Time.deltaTime;
         }
     }
 
     void EndAttack()
     {
-        // End the attack, mark attack as over for EnableRandomAttack
+        // End the attack and clean up the spawned bullet
         if (spawnedBullet != null)
         {
-            Destroy(spawnedBullet);  // Clean up the bullet
+            Destroy(spawnedBullet);
         }
         enableRandomAttack.attackOver = true;
-        bulletAttack.enabled = false;
+        wallAttack.enabled = false;
     }
 }

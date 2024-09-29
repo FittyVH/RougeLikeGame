@@ -7,6 +7,7 @@ TagManager:
   - boundry
   - obstacle
   - sword
+  - ground
   layers:
   - Default
   - TransparentFX

@@ -10,5 +10,9 @@ public class DestroyObstacle : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }

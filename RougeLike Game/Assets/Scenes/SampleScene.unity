@@ -616,7 +616,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187162563}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc040f2de4455614dbfb41a24870884a, type: 3}
   m_Name: 
@@ -975,8 +975,8 @@ Transform:
   m_GameObject: {fileID: 339569515}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9000001, z: 1.6100001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.9000001, z: 3.19}
+  m_LocalScale: {x: 1, y: 1, z: 6.2139215}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 330585546}
@@ -3192,7 +3192,7 @@ GameObject:
   - component: {fileID: 1128948894}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4682,7 +4682,9 @@ GameObject:
   - component: {fileID: 1731267490}
   - component: {fileID: 1731267489}
   - component: {fileID: 1731267493}
-  - component: {fileID: 1731267494}
+  - component: {fileID: 1731267496}
+  - component: {fileID: 1731267497}
+  - component: {fileID: 1731267498}
   - component: {fileID: 1731267495}
   m_Layer: 0
   m_Name: Boss
@@ -4794,27 +4796,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 187162565}
---- !u!114 &1731267494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731267488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f818e68aa96d13d4c9024ac90fb29280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 187162563}
-  spawnPoint: {fileID: 734482048}
-  allObstacles:
-  - {fileID: 5698113790477173007, guid: b5431e56893a12e4e94277ffcb7c2772, type: 3}
-  - {fileID: 1071963803726752979, guid: f638a81dc36aa674e9cf5906da7d631b, type: 3}
-  - {fileID: 1071963803726752979, guid: c44376c9209f42a458cf39deece6cdca, type: 3}
-  lauchDelay: 0.5
-  moveSpeed: 300
-  spawnInterval: 5
 --- !u!114 &1731267495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4833,6 +4814,65 @@ MonoBehaviour:
   - {fileID: 1659363165}
   - {fileID: 1720147410}
   - {fileID: 1491958418}
+--- !u!114 &1731267496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731267488}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3cfb92a06366e42a14da3f9bf0099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 734482048}
+  bullet: {fileID: 1071963803726752979, guid: f638a81dc36aa674e9cf5906da7d631b, type: 3}
+  player: {fileID: 187162563}
+  enableRandomAttack: {fileID: 1731267498}
+  bulletAttack: {fileID: 1731267496}
+  moveSpeed: 200
+  spawnInterval: 1
+  launchDelay: 0.5
+  maxIterations: 5
+--- !u!114 &1731267497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731267488}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc0e2879100fd346968e5d865f67c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 734482048}
+  bullet: {fileID: 8404679153935196372, guid: 14a1800e254efd74bb2e37f6ca9dc0a9, type: 3}
+  player: {fileID: 187162563}
+  enableRandomAttack: {fileID: 1731267498}
+  wallAttack: {fileID: 1731267497}
+  moveSpeed: 200
+  spawnInterval: 1
+  launchDelay: 1
+  maxIterations: 5
+--- !u!114 &1731267498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731267488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab057bcc5f98e54fb4fa7077a18a869, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackScripts:
+  - {fileID: 1731267496}
+  - {fileID: 1731267497}
+  attackInterval: 2
+  attackOver: 0
 --- !u!1 &1847211829
 GameObject:
   m_ObjectHideFlags: 0
